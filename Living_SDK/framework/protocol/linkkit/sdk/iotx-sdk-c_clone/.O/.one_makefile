@@ -1,0 +1,444 @@
+include /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/build-rules/funcs.mk
+
+SHELL   := bash
+Q       ?= @
+VPATH   := /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/log /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/timer_service /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/tick_notify /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs 
+
+EXT_IFLAGS  := \
+    -Ibuild-rules/misc \
+    -Iinclude \
+    -Iinclude/exports \
+    -Iinclude/imports \
+    -Isrc/infra \
+    -Isrc/infra/log \
+    -Isrc/infra/system \
+    -Isrc/infra/system/facility \
+    -Isrc/infra/utils \
+    -Isrc/infra/utils/digest \
+    -Isrc/infra/utils/misc \
+
+IFLAGS  := \
+    -Isrc/infra/utils \
+    -Isrc/infra/utils/digest \
+    -Isrc/infra/utils/misc \
+    -Isrc/infra/log \
+    -Isrc/infra/system \
+    -Isrc/infra/system/facility \
+    -Isrc/sdk-impl \
+    -Isrc/services/dev_diagnosis \
+    -Icomponents/timer_service \
+    -Icomponents/tick_notify \
+    -Isrc/protocol/mqtt \
+    -Isrc/protocol/mqtt/MQTTPacket \
+    -Isrc/protocol/mqtt/client \
+    -Isrc/services/ota \
+    -Isrc/services/ota/impl \
+    -Isrc/services/ota/prot \
+    -Isrc/services/linkkit/cm \
+    -Isrc/services/linkkit/cm/include \
+    -Isrc/services/linkkit/dm \
+    -Isrc/services/linkkit/dm/client \
+    -Isrc/services/linkkit/dm/server \
+    -Isrc/services/linkkit/dev_reset \
+    -Isrc/protocol/coap/local \
+    -Isrc/services/awss \
+    -Isrc/services/dev_bind \
+    -Isrc/services/dev_bind/os \
+    -Isrc/services/dev_bind/os/product \
+    -Isrc/protocol/alcs \
+    -Iinclude \
+    -Iinclude/exports \
+    -Iinclude/imports \
+    -Isrc/ref-impl/tls \
+    -Isrc/ref-impl/tls/include \
+    -Isrc/ref-impl/tls/include/mbedtls \
+    -Isrc/ref-impl/tls/library \
+    -Isrc/security/pro \
+    -Isrc/security/pro/crypto \
+    -Isrc/security/pro/id2 \
+    -Isrc/security/pro/itls \
+    -Isrc/security/pro/km \
+    -Isrc/tools/linkkit_tsl_convert/include \
+    -Ibuild-rules \
+    -Ibuild-rules/docs \
+    -Ibuild-rules/hooks \
+    -Ibuild-rules/misc \
+    -Ibuild-rules/scripts \
+    -Isrc/ref-impl/hal \
+    -Isrc/ref-impl/hal/os \
+    -Isrc/ref-impl/hal/os/freertos \
+    -Isrc/ref-impl/hal/os/freertos/docs \
+    -Isrc/ref-impl/hal/os/macos \
+    -Isrc/ref-impl/hal/os/ubuntu \
+    -Isrc/ref-impl/hal/os/win7 \
+    -Isrc/ref-impl/hal/ssl \
+    -Isrc/ref-impl/hal/ssl/itls \
+    -Isrc/ref-impl/hal/ssl/mbedtls \
+    -Isrc/ref-impl/hal/ssl/openssl \
+
+CFLAGS  := \
+     \
+    -DALCS_ENABLED \
+    -DAPP_NAME=beken_test \
+    -DAWSS_BATCH_DEVAP_ENABLE \
+    -DAWSS_SUPPORT_APLIST \
+    -DAWSS_SUPPORT_DEV_AP \
+    -DAWSS_SUPPORT_SMARTCONFIG \
+    -DAWSS_SUPPORT_SMARTCONFIG_MCAST \
+    -DAWSS_SUPPORT_SMARTCONFIG_WPS \
+    -DAWSS_SUPPORT_STATIS \
+    -DAWSS_SUPPORT_ZEROCONFIG \
+    -DBUILD_AOS \
+    -DCOAP_SERV_MULTITHREAD \
+    -DCOMPILE_HOST=ming.liu \
+    -DCONFIG_AOS_CLI \
+    -DCONFIG_BLDTIME_MUTE_DBGLOG=1 \
+    -DCONFIG_SDK_THREAD_COST=1 \
+    -DCONFIG_YWSS \
+    -DDEVICE_MODEL_ENABLED \
+    -DDEV_BIND_ENABLED \
+    -DDEV_ERRCODE_ENABLE \
+    -DDEV_OFFLINE_LOG_ENABLE \
+    -DDEV_OFFLINE_OTA_ENABLE \
+    -DDEV_STATEMACHINE_ENABLE \
+    -DDM_UNIFIED_SERVICE_POST \
+    -DFORCE_SSL_VERIFY \
+    -DGIT_BRANCH=OSK_3.0.X \
+    -DGIT_HASH=1e0806be171bc2387323262849efea1e27d3a324 \
+    -DLOG_REPORT_TO_CLOUD \
+    -DLOG_SIMPLE \
+    -DMANUFACT_AP_FIND_ENABLE \
+    -DMQTT_AUTO_SUBSCRIBE \
+    -DMQTT_COMM_ENABLED \
+    -DONLINE \
+    -DOTA_ENABLED \
+    -DOTA_SIGNAL_CHANNEL=1 \
+    -DPLATFORM=bk7231udevkitc \
+    -DREGION_ENV_STRING=MAINLAND-ONLINE \
+    -DREGION_MAINLAND \
+    -DSDK_COMMIT_ID= \
+    -DSUPPORT_TLS \
+    -DSYSINFO_APP_VERSION=app-1.6.0-20230921.191759 \
+    -DSYSINFO_DEVICE_NAME=BK7231U \
+    -DSYSINFO_KERNEL_VERSION=AOS-R-1.3.4 \
+    -DSYSINFO_PRODUCT_MODEL=ALI_AOS_BK7231U \
+    -DWIFI_PROVISION_ENABLED \
+    -DWITH_MQTT_DYN_BUF=1 \
+    -DWITH_MQTT_SUB_SHORTCUT=1 \
+    -DWITH_MQTT_ZIP_TOPIC=1 \
+    -I/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/../../../../../include \
+    -I/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/../../../../activation \
+    -Iexamples \
+    -Iexamples/linkkit \
+    -Itests \
+    -Os \
+    -Wall \
+    -Werror \
+    -Wno-format \
+    -Wno-implicit-function-declaration \
+    -Wno-incompatible-pointer-types \
+    -Wno-unused \
+    -fdata-sections \
+    -ffunction-sections \
+    -march=armv5te \
+    -mcpu=arm968e-s \
+    -mlittle-endian \
+    -mthumb \
+    -mthumb-interwork \
+
+STAMP_LCOV  := /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/.coverage.done
+
+.PHONY: all
+all: /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/usr/lib/libiot_sdk.a  
+	$(Q)cp -rf include/iot_import.h include/iot_export.h include/imports include/exports  /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/usr/include 2>/dev/null || true
+	@rm -f *.gcda *.gcno $$(find /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/build-rules -name "*.o")
+
+	@if [ "$(WITH_LCOV)" = "1" ]; then \
+	    mkdir -p $$(dirname $(STAMP_LCOV)); \
+	    touch $(STAMP_LCOV); \
+	else \
+	    rm -f $(STAMP_LCOV); \
+	fi
+
+ifneq (,$(findstring gcc,$(CC)))
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/json_parser.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/string_utils.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/json_token.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/log_report.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_epoch_time.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_event.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_httpc.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/mem_stats.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_timer.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/lite-cjson.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_net.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_hmac.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_md5.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_sha256.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_base64.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_sha1.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/log/iotx_log.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/aos_support.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/guider.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/report.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/device.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/event.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/ca.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/redirect_region.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/facility/fac_string.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/sdk-impl.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_linkkit.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_logpost.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_dynreg.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/sdk_reset.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_ntp.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_offline_ota.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/diagnosis_offline_log.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_state_machine.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_errcode.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_diagnosis.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/timer_service/ccronexpr.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/timer_service/timer_service.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/tick_notify/tick_notify.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/client/mqtt_client.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTPacket.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTSerializePublish.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTSubscribeClient.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTDeserializePublish.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTUnsubscribeClient.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTConnectClient.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota/iotx_ota.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota/impl/ota_fetch.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota/impl/ota_lib.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm/iotx_cm.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm/iotx_cm_coap.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm/iotx_cm_mqtt.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_api.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_cota.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_fota.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_ipc.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_manager.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_message.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_message_cache.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_msg_process.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_opt.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_ota.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_shadow.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_utils.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/server/dm_server_adapter.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/server/dm_server.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/client/dm_client_adapter.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/client/dm_client.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset/offline_reset.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset/awss_reset.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset/awss_reset_statis.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPSerialize.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPObserve.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPPlatform.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPExport.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPNetwork.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPResource.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPServer.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPDeserialize.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPMessage.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_wifimgr.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_main.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_dev_ap.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_enrollee.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_ieee80211.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_info_notify.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_adha.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_manufact_ap_find.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_aplist.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_smartconfig.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_vendor_common.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_utils.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_aha.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_protocol.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_crypt.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_smartconfig_mcast.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_wps.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_ap_scan.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_ht40.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_registrar.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_statis.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/connect_ap.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_info.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_bind.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_bind_statis.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_event.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_notify.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_timer.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/passwd.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_cmp_coap.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_cmp_mqtt.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/sha256.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_report.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_packet.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/os/os_misc.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_mqtt.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_api.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_adapter.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_client.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_localsetup.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_server.d
+sinclude /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_coap.d
+endif
+
+/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/usr/lib/libiot_sdk.a: \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/json_parser.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/string_utils.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/json_token.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/log_report.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_epoch_time.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_event.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_httpc.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/mem_stats.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_timer.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/lite-cjson.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/misc/utils_net.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_hmac.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_md5.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_sha256.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_base64.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/utils/digest/utils_sha1.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/log/iotx_log.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/aos_support.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/guider.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/report.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/device.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/event.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/ca.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/redirect_region.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/infra/system/facility/fac_string.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/sdk-impl.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_linkkit.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_logpost.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_dynreg.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/sdk_reset.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/sdk-impl/impl_ntp.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_offline_ota.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/diagnosis_offline_log.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_state_machine.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_errcode.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_diagnosis/dev_diagnosis.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/timer_service/ccronexpr.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/timer_service/timer_service.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/components/tick_notify/tick_notify.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/client/mqtt_client.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTPacket.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTSerializePublish.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTSubscribeClient.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTDeserializePublish.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTUnsubscribeClient.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/mqtt/MQTTPacket/MQTTConnectClient.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota/iotx_ota.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota/impl/ota_fetch.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/ota/impl/ota_lib.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm/iotx_cm.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm/iotx_cm_coap.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/cm/iotx_cm_mqtt.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_api.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_cota.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_fota.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_ipc.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_manager.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_message.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_message_cache.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_msg_process.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_opt.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_ota.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_shadow.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/dm_utils.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/server/dm_server_adapter.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/server/dm_server.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/client/dm_client_adapter.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dm/client/dm_client.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset/offline_reset.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset/awss_reset.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/linkkit/dev_reset/awss_reset_statis.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPSerialize.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPObserve.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPPlatform.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPExport.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPNetwork.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPResource.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPServer.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPDeserialize.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/coap/local/CoAPMessage.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_wifimgr.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_main.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_dev_ap.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_enrollee.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_ieee80211.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_info_notify.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_adha.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_manufact_ap_find.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_aplist.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_smartconfig.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_vendor_common.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_utils.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_aha.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/zconfig_protocol.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_crypt.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_smartconfig_mcast.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_wps.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_ap_scan.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_ht40.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_registrar.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_statis.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/connect_ap.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/awss/awss_info.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_bind.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_bind_statis.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_event.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_notify.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_timer.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/passwd.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_cmp_coap.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_cmp_mqtt.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/sha256.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_report.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/awss_packet.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/services/dev_bind/os/os_misc.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_mqtt.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_api.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_adapter.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_client.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_localsetup.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_server.o \
+    /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O/src/protocol/alcs/alcs_coap.o \
+
+	$(Q)mkdir -p $$(dirname $@)
+	$(Q)$(call Brief_Log,"AR",$$(basename $@),"...")
+	$(Q)/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/build/compiler/gcc-arm-none-eabi/Linux64/bin/arm-none-eabi-ar -rcs $@ $^ 2>/dev/null
+
+%.o:
+	$(Q)$(call Brief_Log,"CC",$$(basename $@),"...")
+	$(Q)mkdir -p $$(dirname $@)
+	$(Q)S=$$(echo $@|sed 's,/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O,/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone,1'); \
+    [ -f $${S//.o/.c} ] && /home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/build/compiler/gcc-arm-none-eabi/Linux64/bin/arm-none-eabi-gcc -c \
+        -o $@ \
+        $(CFLAGS) \
+        $(IFLAGS) \
+        $${S//.o/.c}
+
+ifneq (,$(findstring gcc,$(CC)))
+%.d:
+	@\
+( \
+	D=$$(dirname $@|sed 's,/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone/.O,/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/framework/protocol/linkkit/sdk/iotx-sdk-c_clone,1'); \
+	F=$$(basename $@); \
+	F=$${F/.d/.c}; \
+	mkdir -p $$(dirname $@); \
+	/home/ming.liu/ci/workspace/sdk3.0_Verify/smartliving-1.6.0-bk7231u-master/Living_SDK/build/compiler/gcc-arm-none-eabi/Linux64/bin/arm-none-eabi-gcc -MM -I$(CURDIR) \
+	    $(IFLAGS) \
+	    $(CFLAGS) \
+	$${D}/$${F} > $@.$$$$; \
+	sed -i 's!$(shell basename $*)\.o[ :]!$*.o:!1' $@.$$$$; \
+	mv $@.$$$$ $@; \
+)
+endif
+
